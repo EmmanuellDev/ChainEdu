@@ -4,6 +4,7 @@ import Admin from "./components/Admin";
 import Teacher from "./components/Teacher";
 import PublishData from "./components/PublishData";
 import HomePage from "./components/Home";
+import AdminApprovalPage from "./components/AdminApprovalPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/teacher" element={<Teacher />} />
           <Route path="/publish" element={<PublishData />} />
           <Route path="/" element={<HomePage />} />
+          <Route path="/admin-approval" element={<AdminApprovalPage />} />
         </Routes>
       </div>
     </Router>

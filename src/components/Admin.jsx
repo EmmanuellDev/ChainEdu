@@ -40,7 +40,15 @@ const Admin = () => {
           className="flex items-center justify-between p-4 mb-4 border rounded"
         >
           <div>
-            <p className="font-semibold">{request.message}</p>
+            <p className="font-semibold">Resume (IPFS Link):</p>
+            <a
+              href={request.ipfsLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              View Resume
+            </a>
             <p>Status: {request.status}</p>
           </div>
           {request.status === "pending" && (

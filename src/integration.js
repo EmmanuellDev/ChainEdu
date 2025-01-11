@@ -1,34 +1,50 @@
-import { ethers } from "ethers";
-import abi from "./abi/abi.json";
+import Web3 from "web3";
+import contractABI from "./abi/abi.json"; // Adjust the path if needed
+import { useState } from "react";
 
-const contractAddress = "0xcb2217d45754c751abbafc036b1a5a1d45dba3a5";
+// Set up web3 instance
+const web3 = new Web3(window.ethereum);
 
-// Store a message in the smart contract
-export const storeMessage = async (message) => {
-  if (!window.ethereum) throw new Error("MetaMask is not installed.");
+// Contract address and instance
+const contractAddress = "0x33b21cf57e74aa124947341915f6e2d2214125e9"; // Replace with your contract address
+const contract = new web3.eth.Contract(contractABI, contractAddress);
 
-  // Connect to Ethereum wallet
-  const provider = new ethers.BrowserProvider(window.ethereum);
-  const signer = await provider.getSigner();
+// Helper function to store teacher metadata in the contract
+export const handleStoreMetadata = async (name, description, ipfsLink) => {
+  if (!web3.utils.isAddress(contractAddress)) {
+    throw new Error("Invalid contract address");
+  }
 
-  // Connect to the smart contract
-  const contract = new ethers.Contract(contractAddress, abi, signer);
+  const accounts = await web3.eth.requestAccounts();
+  if (accounts.length === 0) {
+    throw new Error("Please connect your wallet");
+  }
 
-  // Call the storeMessage function
-  const tx = await contract.storeMessage(message);
-  await tx.wait(); // Wait for transaction confirmation
+  const userAddress = accounts[0];
+
+  try {
+    // Call the smart contract to store the metadata
+    const response = await contract.methods
+      .addTeacherMetadata(name, description, ipfsLink)
+      .send({ from: userAddress });
+
+    console.log("Metadata stored in contract:", response);
+    return response;
+  } catch (error) {
+    console.error("Error storing metadata:", error);
+    throw new Error("Error storing metadata in the contract.");
+  }
 };
 
-// Retrieve the stored message from the smart contract
-export const retrieveMessage = async () => {
-  if (!window.ethereum) throw new Error("MetaMask is not installed.");
-
-  // Connect to Ethereum wallet
-  const provider = new ethers.BrowserProvider(window.ethereum);
-
-  // Connect to the smart contract
-  const contract = new ethers.Contract(contractAddress, abi, provider);
-
-  // Call the retrieveMessage function
-  return await contract.retrieveMessage();
+// Helper function to retrieve teacher metadata from the contract
+export const handleGetMetadata = async (name) => {
+  try {
+    const teacherMetadata = await contract.methods
+      .getTeacherMetadata(name)
+      .call();
+    return teacherMetadata;
+  } catch (error) {
+    console.error("Error retrieving metadata:", error);
+    throw new Error("Error retrieving metadata from the contract.");
+  }
 };
