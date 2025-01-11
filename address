@@ -1,1 +1,85 @@
-0xDc93d80D5D40281cDD57b9C60273ae5f680E941B
+// 0xDc93d80D5D40281cDD57b9C60273ae5f680E941B
+
+// // SPDX-License-Identifier: MIT
+// pragma solidity ^0.8.0;
+
+// contract TeacherRegistration {
+//     address public admin;
+
+//     struct Teacher {
+//         string ipfsHash;
+//         address walletAddress;
+//         bool isRegistered;
+//         bool isPending;
+//         bool isRejected;
+//     }
+
+//     mapping(address => Teacher) public teachers;
+
+//     event ProposalSent(address indexed teacher, string ipfsHash);
+//     event ProposalAccepted(address indexed teacher);
+//     event ProposalRejected(address indexed teacher);
+
+//     modifier onlyAdmin() {
+//         require(msg.sender == admin, "Only admin can perform this action");
+//         _;
+//     }
+
+//     modifier notRegistered() {
+//         require(!teachers[msg.sender].isRegistered, "Already registered as a teacher");
+//         _;
+//     }
+
+//     constructor() {
+//         admin = msg.sender;
+//     }
+
+//     function submitProposal(string memory ipfsHash) external notRegistered {
+//         require(bytes(ipfsHash).length > 0, "Invalid IPFS hash");
+//         require(!teachers[msg.sender].isPending, "Proposal already submitted");
+
+//         teachers[msg.sender] = Teacher({
+//             ipfsHash: ipfsHash,
+//             walletAddress: msg.sender,
+//             isRegistered: false,
+//             isPending: true,
+//             isRejected: false
+//         });
+
+//         emit ProposalSent(msg.sender, ipfsHash);
+//     }
+
+//     function acceptProposal(address teacherAddress) external onlyAdmin {
+//         require(teachers[teacherAddress].isPending, "No pending proposal for this address");
+
+//         teachers[teacherAddress].isRegistered = true;
+//         teachers[teacherAddress].isPending = false;
+
+//         emit ProposalAccepted(teacherAddress);
+//     }
+
+//     function rejectProposal(address teacherAddress) external onlyAdmin {
+//         require(teachers[teacherAddress].isPending, "No pending proposal for this address");
+
+//         teachers[teacherAddress].isRejected = true;
+//         teachers[teacherAddress].isPending = false;
+
+//         emit ProposalRejected(teacherAddress);
+//     }
+
+//     function isTeacherRegistered(address teacherAddress) external view returns (bool) {
+//         return teachers[teacherAddress].isRegistered;
+//     }
+
+//     function checkProposalStatus() external view returns (string memory) {
+//         if (teachers[msg.sender].isRejected) {
+//             return "Your proposal has been rejected.";
+//         } else if (teachers[msg.sender].isPending) {
+//             return "Your proposal is pending.";
+//         } else if (teachers[msg.sender].isRegistered) {
+//             return "You are registered as a teacher.";
+//         } else {
+//             return "No proposal found.";
+//         }
+//     }
+// }
