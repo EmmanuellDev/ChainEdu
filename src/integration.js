@@ -2,7 +2,7 @@ import Web3 from "web3";
 import axios from "axios";
 import abi from "./abi/abi.json";
 
-const CONTRACT_ADDRESS = "0xdB0Fc412EC12f047d57435eB21D8859540bf3eED"; // Replace with your contract address
+const CONTRACT_ADDRESS = "0xE8C42b0c182d31F06d938a97a969606A7731fFda"; // Replace with your contract address
 const PINATA_API_KEY = "ba943b167d821f1de695";
 const PINATA_SECRET_KEY =
   "86eeb88f5c80cd00ca3d14945e2d4eecd0454938752711a5f65564dfb38fc84f";
@@ -45,14 +45,20 @@ export const submitProposal = async (ipfsHash) => {
   try {
     const accounts = await web3.eth.getAccounts();
     const sender = accounts[0];
+    console.log("Using sender account:", sender);
+    console.log("Submitting IPFS hash to contract:", ipfsHash);
+
+    const gasEstimate = await contract.methods.submitProposal(ipfsHash).estimateGas({ from: sender });
+    console.log("Estimated gas for transaction:", gasEstimate);
 
     await contract.methods.submitProposal(ipfsHash).send({ from: sender });
     console.log("Proposal submitted successfully.");
   } catch (error) {
-    console.error("Error submitting proposal:", error);
+    console.error("Error during proposal submission:", error);
     throw error;
   }
 };
+
 
 export const acceptProposal = async (teacherAddress) => {
   try {
@@ -86,11 +92,27 @@ export const rejectProposal = async (teacherAddress) => {
 
 export const getTeacherDetails = async (teacherAddress) => {
   try {
+    console.log("Fetching teacher details for address:", teacherAddress);
+
+    // Ensure the address is valid
+    if (!web3.utils.isAddress(teacherAddress)) {
+      throw new Error("Invalid Ethereum address");
+    }
+
+    // Call the smart contract
     const teacher = await contract.methods.teachers(teacherAddress).call();
+
+    // Check if the teacher is registered
+    if (!teacher.isRegistered) {
+      throw new Error("Teacher is not registered in the contract");
+    }
+
+    // Log and return teacher details
     console.log("Teacher details:", teacher);
     return teacher;
   } catch (error) {
-    console.error("Error fetching teacher details:", error);
+    console.error("Error fetching teacher details:", error.message || error);
     throw error;
   }
 };
+

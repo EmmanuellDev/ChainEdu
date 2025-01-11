@@ -1,9 +1,23 @@
-import React, { useState } from "react";
-import { uploadToPinata, submitProposal } from "../integration";
+import React, { useState, useEffect } from "react";
+import { uploadToPinata, submitProposal, initializeWeb3 } from "../integration";
 
 const UploadComponent = () => {
   const [file, setFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [web3Initialized, setWeb3Initialized] = useState(false);
+
+  useEffect(() => {
+    const initWeb3 = async () => {
+      try {
+        await initializeWeb3();
+        setWeb3Initialized(true);
+      } catch (error) {
+        console.error("Error initializing Web3:", error);
+        alert("Please connect your wallet to continue.");
+      }
+    };
+    initWeb3();
+  }, []);
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -11,6 +25,10 @@ const UploadComponent = () => {
 
   const handleUploadAndSubmit = async () => {
     try {
+      if (!web3Initialized) {
+        alert("Web3 not initialized. Please connect your wallet.");
+        return;
+      }
       if (!file) {
         alert("Please select a file first.");
         return;
@@ -41,9 +59,9 @@ const UploadComponent = () => {
       />
       <button
         onClick={handleUploadAndSubmit}
-        disabled={isLoading || !file}
+        disabled={isLoading || !file || !web3Initialized}
         className={`w-full px-4 py-2 text-white font-semibold rounded-md ${
-          isLoading
+          isLoading || !web3Initialized
             ? "bg-gray-400 cursor-not-allowed"
             : "bg-blue-600 hover:bg-blue-700"
         }`}
