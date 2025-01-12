@@ -10,6 +10,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
+
 function App() {
   return (
     <Router>
@@ -27,7 +28,7 @@ function App() {
             <Route path="/publish" element={<PublishData />} />
             <Route path="/admin-home" element={<AdminHome />} />
             <Route path="/admin-approval" element={<AdminApprovalPage />} />
-          </Routes>
+           </Routes>
         </div>
 
         {/* Footer */}

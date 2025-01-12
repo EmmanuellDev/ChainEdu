@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
 import { FaChalkboardTeacher, FaInfoCircle, FaCheckCircle, FaBook, FaQuestionCircle } from "react-icons/fa";
+import Chatbot from "../components/Chatbot";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -153,6 +154,7 @@ const Home = () => {
               </div>
             ))}
           </div>
+          <Chatbot />
         </div>
       </div>
     </div>
