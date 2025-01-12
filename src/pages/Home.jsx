@@ -1,16 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GraduationCap } from "lucide-react";
-import { FaChalkboardTeacher, FaInfoCircle } from "react-icons/fa";
-import { FaCheckCircle, FaBook} from "react-icons/fa";
+import { FaChalkboardTeacher, FaInfoCircle, FaCheckCircle, FaBook, FaQuestionCircle } from "react-icons/fa";
 
 const Home = () => {
   const navigate = useNavigate();
+  const [openFAQ, setOpenFAQ] = useState(null);
+
+  const toggleFAQ = (index) => {
+    setOpenFAQ(openFAQ === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "How does ChainED ensure content quality?",
+      answer:
+        "ChainED ensures quality by verifying the teacher's credentials through the admin before allowing them to publish content. This process maintains the authenticity of educational materials.",
+    },
+    {
+      question: "What role does IPFS play in ChainED?",
+      answer:
+        "IPFS is used to store documentation as hashes temporarily. After admin approval, this metadata is stored securely on smart contracts in Avalanche and Ethereum blockchains.",
+    },
+    {
+      question: "Is ChainED suitable for all types of learners?",
+      answer:
+        "Yes, ChainED provides personalized courses and interactive learning materials that cater to various learning styles and needs, making it suitable for everyone.",
+    },
+  ];
 
   return (
     <div className="bg-black">
       <div className="container min-h-screen px-4 py-16 mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 h-[70vh]">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 h-[60vh] w-[1200px] mx-auto">
           {/* Learner Box */}
           <button
             onClick={() => navigate("/learner")}
@@ -92,6 +114,44 @@ const Home = () => {
               className="w-full md:w-1/3 h-[500px] md:h-[600px] rounded-xl border-none shadow-lg"
               title="About Animation"
             ></iframe>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="text-left text-blue-100">
+          <div className="flex items-center justify-start mb-6">
+            <FaQuestionCircle className="w-8 h-8 mr-3 text-violet-400" />
+            <h2 className="text-5xl font-extrabold text-violet-400">
+              Frequent FAQs
+            </h2>
+          </div>
+
+          {/* Centered and Reduced Width */}
+          <div className="max-w-3xl mx-auto mt-20 space-y-6">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="p-6 border-2 rounded-lg bg-violet-700 border-violet-900"
+              >
+                {/* FAQ Question */}
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className="flex items-center justify-between w-full text-left text-white"
+                >
+                  <span className="text-2xl font-bold">{faq.question}</span>
+                  <span className="text-3xl">
+                    {openFAQ === index ? "-" : "+"}
+                  </span>
+                </button>
+
+                {/* FAQ Answer */}
+                {openFAQ === index && (
+                  <p className="mt-4 text-lg leading-relaxed text-white">
+                    {faq.answer}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -45,7 +45,7 @@ const Admin = () => {
         {/* Buttons at the top */}
         <button
           onClick={() => handleNavigate("/admin-home")}
-          className="px-6 py-2 text-white transition duration-200 bg-green-600 rounded-full hover:bg-green-700"
+          className="px-6 py-2 text-white transition duration-200 rounded-full bg-violet-600 hover:bg-violet-700"
         >
           Admin Home
         </button>

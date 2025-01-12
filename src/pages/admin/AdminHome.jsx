@@ -41,14 +41,14 @@ const AdminHome = () => {
           {/* Button to navigate to Admin Panel */}
           <button
             onClick={handleNavigateToAdmin}
-            className="px-6 py-2 text-white bg-blue-600 rounded-full hover:bg-blue-700"
+            className="px-6 py-2 text-white rounded-full bg-violet-600 hover:bg-violet-700"
           >
             Admin Approval
           </button>
           {/* Button to navigate to Admin Approval page */}
           <button
             onClick={handleNavigateToAdminApproval}
-            className="px-6 py-2 text-white bg-green-600 rounded-full hover:bg-green-700"
+            className="px-6 py-2 text-white rounded-full bg-violet-600 hover:bg-violet-700"
           >
             Admin Storage
           </button>
