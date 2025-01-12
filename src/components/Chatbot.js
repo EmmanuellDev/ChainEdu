@@ -102,7 +102,7 @@ const Chatbot = () => {
           value={userMessage}
           onChange={handleInputChange}
           placeholder="Type your message..."
-          className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+          className="w-full p-3 border rounded-lg text-black focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
           style={{ height: textareaHeight }}
         />
         <button
