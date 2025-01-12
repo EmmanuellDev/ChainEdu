@@ -66,7 +66,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="chatbot-container max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
+    <div className="chatbot-container max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 mt-5">
       {/* Chat History */}
       <div className="chat-history overflow-y-auto h-96 space-y-4 mb-4">
         {chatHistory.map((msg, index) => (
