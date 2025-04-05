@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const pinataEndpoint = "https://api.pinata.cloud/pinning/pinFileToIPFS";
 const pinataApiKey = "ba943b167d821f1de695";
 const pinataApiSecret =
-  "86eeb88f5c80cd00ca3d14945e2d4eecd0454938752711a5f65564dfb38fc84e";
+  "86eeb88f5c80cd00ca3d14945e2d4eecd0454938752711a5f65564dfb38fc84f";
 
 const PublishData = () => {
   const [canPublish, setCanPublish] = useState(false);
