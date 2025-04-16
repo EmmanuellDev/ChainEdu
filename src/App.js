@@ -1,78 +1,40 @@
-import React, { useState, useEffect } from "react";
-import {
-  initializeWeb3,
-  acceptProposal,
-  rejectProposal,
-  getTeacherDetails,
-} from "./integration";
-import UploadComponent from "./components/UploadComponent";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Admin from "./pages/admin/Admin";
+import Teacher from "./pages/teacher/Teacher";
+import PublishData from "./pages/teacher/PublishData";
+import AdminApprovalPage from "./pages/admin/AdminApprovalPage";
+import AdminHome from "./pages/admin/AdminHome";
+import LearnerHome from "./pages/learner/LearnerHome";
+import Home from "./pages/Home";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+
 
 function App() {
-  const [teacherAddress, setTeacherAddress] = useState("");
-  const [teacherDetails, setTeacherDetails] = useState(null);
-
-  const handleAcceptProposal = async () => {
-    try {
-      await acceptProposal(teacherAddress);
-      alert("Proposal accepted successfully.");
-    } catch (error) {
-      alert("Error accepting proposal.");
-      console.error(error);
-    }
-  };
-
-  const handleRejectProposal = async () => {
-    try {
-      await rejectProposal(teacherAddress);
-      alert("Proposal rejected successfully.");
-    } catch (error) {
-      console.error("Error rejecting proposal:", error);
-      throw error;
-    }
-  };
-
-  const fetchTeacherDetails = async () => {
-    try {
-      const details = await getTeacherDetails(teacherAddress);
-      setTeacherDetails(details);
-    } catch (error) {
-      alert("Error fetching teacher details.");
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    initializeWeb3();
-  }, []);
-
   return (
-    <div className="App">
-      <h1>Teacher Registration</h1>
+    <Router>
+      <div className="flex flex-col min-h-screen bg-gray-100">
+        {/* Header */}
+        <Header />
 
-      {/* Upload Component */}
-      <UploadComponent />
-
-      <h2>Manage Proposals</h2>
-      <input
-        type="text"
-        placeholder="Teacher Address"
-        value={teacherAddress}
-        onChange={(e) => setTeacherAddress(e.target.value)}
-      />
-      <button onClick={fetchTeacherDetails}>Get Teacher Details</button>
-      <button onClick={handleAcceptProposal}>Accept Proposal</button>
-      <button onClick={handleRejectProposal}>Reject Proposal</button>
-
-      {teacherDetails && (
-        <div>
-          <h3>Teacher Details</h3>
-          <p>IPFS Hash: {teacherDetails.ipfsHash}</p>
-          <p>Is Registered: {teacherDetails.isRegistered.toString()}</p>
-          <p>Is Pending: {teacherDetails.isPending.toString()}</p>
-          <p>Is Rejected: {teacherDetails.isRejected.toString()}</p>
+        {/* Routes */}
+        <div className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/learner" element={<LearnerHome />} />
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/teacher" element={<Teacher />} />
+            <Route path="/publish" element={<PublishData />} />
+            <Route path="/admin-home" element={<AdminHome />} />
+            <Route path="/admin-approval" element={<AdminApprovalPage />} />
+           </Routes>
         </div>
-      )}
-    </div>
+
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
 
