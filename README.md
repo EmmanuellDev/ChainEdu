@@ -1,70 +1,85 @@
-# Getting Started with Create React App
+# 📚 ChainEdu – Decentralized Education Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+**ChainEdu** is a decentralized learning platform where users can join as **Students** or **Teachers**.  
+Students gain access to a vast collection of **educational books stored on IPFS**, while teachers can upload unlimited resources for students worldwide.  
 
-## Available Scripts
+Built on **Web3 + IPFS**, ChainEdu ensures **secure, censorship-resistant, and transparent access** to educational content.  
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## 🔑 Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- 👩‍🎓 **Students** – Browse and access books directly from **IPFS**.  
+- 👨‍🏫 **Teachers** – Upload unlimited books, securely stored on **IPFS**.  
+- 🌍 **Decentralized Learning** – Content stored in IPFS ensures **global availability** and **immutability**.  
+- 🔗 **Blockchain + IPFS Integration** – Combining decentralization with education.  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+---
 
-### `npm test`
+## 🛠️ Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ✅ **Dual Roles** – Join as a **Student** or **Teacher**.  
+- ✅ **IPFS Storage** – Books are permanently stored on **InterPlanetary File System (IPFS)**.  
+- ✅ **Unlimited Uploads** – Teachers can contribute an **unlimited number of books**.  
+- ✅ **Seamless Access** – Students can explore and download books anytime.  
+- ✅ **Decentralized Education Hub** – Breaking central authority over learning materials.  
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 📦 Tech Stack
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Frontend:** React.js / Tailwind CSS  
+- **Storage:** IPFS (via Pinata / Infura)  
+- **Blockchain:** Ethereum / EVM-compatible networks  
+- **Wallet Integration:** ethers.js / MetaMask  
+- **Backend:** Smart contracts (Solidity)  
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
+## 🚀 Getting Started
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Clone the repository
+git clone https://github.com/EmmanuellDev/ChainEdu.git
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Navigate to the project folder
+cd ChainEdu
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+# Install dependencies
+npm install --legacy-peer-deps
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# Start the development server
+npm start
+```
 
-## Learn More
+# 🌍 How It Works
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Teachers Upload Books
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Books are uploaded through the platform.
 
-### Code Splitting
+Stored securely on IPFS for decentralization.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+IPFS hash is recorded for retrieval.
 
-### Analyzing the Bundle Size
+Students Access Books
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Students browse available resources.
 
-### Making a Progressive Web App
+Fetches content directly via IPFS gateway.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+Download/read books without relying on centralized servers.
 
-### Advanced Configuration
+# 📈 Use Cases
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+🎓 Students – Access free educational resources globally.
 
-### Deployment
+📖 Teachers – Share knowledge without restrictions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+🌍 Global Education – Bridging the gap for students in regions with limited resources.
 
-### `npm run build` fails to minify
+🔗 Decentralized Libraries – Permanent, censorship-resistant storage of knowledge.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# 📜 License
+© 2025 ChainEdu. All rights reserved. Designed by Team Fortiv.
+For support or contributions, contact emmanuelsk04@gmail.com or open an issue on GitHub.
